@@ -52,6 +52,8 @@ module.exports = {
         console.log(`UsersController.signIn called`)
     },
     secret: async (req, res, next) => {
-        console.log(`UsersController.secret called`)
+        res.status(200).json({
+            secret: 'resource'
+        })
     }
 }
