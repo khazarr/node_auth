@@ -5,7 +5,7 @@ const {
     JWT_SECRET
 } = require('../configuration')
 
-const signtoken = (user) => {
+const signToken = (user) => {
     return JWT.sign({
         iss: 'kari',
         sub: user.id,
@@ -40,7 +40,7 @@ module.exports = {
         await newUser.save();
 
         // generate token
-        const token = signtoken(newUser)
+        const token = signToken(newUser)
 
         // Respond with token
         res.status(200).json({
@@ -49,6 +49,11 @@ module.exports = {
     },
     signIn: async (req, res, next) => {
         // Generate Token
+        const token = signToken(req.user);
+        // Respond with token
+        res.status(200).json({
+            token
+        });
         console.log(`UsersController.signIn called`)
     },
     secret: async (req, res, next) => {
